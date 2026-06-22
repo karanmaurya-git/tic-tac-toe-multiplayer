@@ -1,13 +1,18 @@
-
 const express = require("express");
 const http = require("http");
 const { Server } = require("socket.io");
 const cors = require("cors");
 const rooms = require("./rooms");
+const path = require("path");
 
 const app = express();
 
 app.use(cors());
+
+// ✅ (OPTIONAL BUT GOOD) basic route so server is not empty
+app.get("/", (req, res) => {
+  res.send("🎮 Tic Tac Toe Multiplayer Server Running");
+});
 
 const server = http.createServer(app);
 
@@ -31,11 +36,7 @@ function checkWinner(board) {
   ];
 
   for (const [a, b, c] of wins) {
-    if (
-      board[a] &&
-      board[a] === board[b] &&
-      board[a] === board[c]
-    ) {
+    if (board[a] && board[a] === board[b] && board[a] === board[c]) {
       return board[a];
     }
   }
@@ -48,10 +49,7 @@ io.on("connection", (socket) => {
 
   // CREATE ROOM
   socket.on("create-room", (playerName) => {
-    const roomCode = Math.random()
-      .toString(36)
-      .substring(2, 8)
-      .toUpperCase();
+    const roomCode = Math.random().toString(36).substring(2, 8).toUpperCase();
 
     rooms[roomCode] = {
       players: [
@@ -66,7 +64,6 @@ io.on("connection", (socket) => {
     };
 
     socket.join(roomCode);
-
     socket.emit("room-created", roomCode);
 
     console.log("Room Created:", roomCode);
@@ -93,7 +90,6 @@ io.on("connection", (socket) => {
     });
 
     socket.join(roomCode);
-
     io.to(roomCode).emit("player-joined", room);
 
     console.log(`${playerName} joined ${roomCode}`);
@@ -105,10 +101,8 @@ io.on("connection", (socket) => {
 
     if (!room) return;
 
-    // Cell already occupied
     if (room.board[index] !== "") return;
 
-    // Wrong turn
     if (room.turn !== symbol) {
       console.log("Wrong turn");
       return;
@@ -116,7 +110,6 @@ io.on("connection", (socket) => {
 
     room.board[index] = symbol;
 
-    // Winner check
     const winner = checkWinner(room.board);
 
     if (winner) {
@@ -133,10 +126,7 @@ io.on("connection", (socket) => {
       return;
     }
 
-    // Draw check
-    const isDraw = room.board.every(
-      (cell) => cell !== ""
-    );
+    const isDraw = room.board.every((cell) => cell !== "");
 
     if (isDraw) {
       io.to(roomCode).emit("board-updated", {
@@ -152,7 +142,6 @@ io.on("connection", (socket) => {
       return;
     }
 
-    // Change turn
     room.turn = symbol === "X" ? "O" : "X";
 
     io.to(roomCode).emit("board-updated", {
@@ -161,7 +150,6 @@ io.on("connection", (socket) => {
     });
 
     console.log(`Move: ${symbol} at ${index}`);
-    console.log(`Next Turn: ${room.turn}`);
   });
 
   // RESTART GAME
@@ -170,12 +158,7 @@ io.on("connection", (socket) => {
 
     if (!room) return;
 
-    room.board = [
-      "", "", "",
-      "", "", "",
-      "", "", ""
-    ];
-
+    room.board = ["", "", "", "", "", "", "", "", ""];
     room.turn = "X";
 
     io.to(roomCode).emit("game-restarted", {
@@ -191,7 +174,9 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(5000, () => {
-  console.log("Server running on port 5000");
-});
+// ✅ IMPORTANT: Render PORT FIX
+const PORT = process.env.PORT || 5000;
 
+server.listen(PORT, () => {
+  console.log("Server running on port", PORT);
+});
