@@ -30,46 +30,108 @@ Players can create or join rooms and play instantly with real-time synchronizati
 📱 Responsive UI (works on desktop & mobile)
 🧠 Tech Stack
 
-Frontend:
+#Frontend:
 
 React (Vite)
 JavaScript
 CSS
 
-Backend:
+#Backend:
 
 Node.js
 Express.js
 Socket.io
-📁 Project Structure
-TIC-TAC-TOE-MULTIPLAYER/
+
+# 📁 Project Structure
+
+```text
+TIC-TAC-TOE-MULTIPLAYER
 │
-├── client/                     # Frontend (React App)
-│   ├── node_modules/
+├── client/                        # Frontend (React + Vite)
 │   ├── public/
 │   ├── src/
-│   │   ├── assets/             # Images / static assets
+│   │   ├── assets/                # Images & static assets
 │   │   ├── components/
-│   │   │   └── Board.jsx       # Game board UI
-│   │   ├── App.jsx             # Main app logic (rooms, game state)
+│   │   │   └── Board.jsx          # Game board UI
+│   │   ├── App.jsx                # Main app logic
 │   │   ├── App.css
 │   │   ├── index.css
-│   │   ├── main.jsx            # React entry point
-│   │   └── socket.js           # Socket.io client connection
-│   │
+│   │   ├── main.jsx               # React entry point
+│   │   └── socket.js              # Socket.io client connection
 │   ├── index.html
 │   ├── package.json
 │   ├── vite.config.js
 │   └── .gitignore
 │
-├── server/                     # Backend (Socket server)
-│   ├── node_modules/
-│   ├── index.js                # Express + Socket.io server logic
+├── server/                        # Backend (Express + Socket.io)
+│   ├── index.js                   # Server logic
 │   ├── package.json
 │   └── package-lock.json
 │
 ├── README.md
 └── .gitignore
+```
+
+## ⚙️ How to Run This Project
+
+### 1️⃣ Clone the Repository
+
+```bash
+git clone https://github.com/your-username/tic-tac-toe-multiplayer.git
+cd tic-tac-toe-multiplayer
+```
+
+### 2️⃣ Install Dependencies
+
+#### Frontend
+
+```bash
+cd client
+npm install
+```
+
+#### Backend
+
+```bash
+cd ../server
+npm install
+```
+
+### 3️⃣ Start the Backend Server
+
+```bash
+cd server
+npm start
+```
+
+Server runs on:
+
+```text
+http://localhost:3000
+```
+
+### 4️⃣ Start the Frontend
+
+Open a new terminal:
+
+```bash
+cd client
+npm run dev
+```
+
+Frontend runs on:
+
+```text
+http://localhost:5173
+```
+
+### 5️⃣ Play the Game
+
+1. Open the app in two browser windows/devices.
+2. Create a room.
+3. Share the room code with another player.
+4. Second player joins using the room code.
+5. Start playing Tic-Tac-Toe in real time.
 
 
 ⚙️ How to Run This Project
