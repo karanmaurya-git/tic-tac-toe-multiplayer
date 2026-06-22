@@ -15,69 +15,79 @@ The React Compiler is not enabled on this template because of its impact on dev 
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
 
+# 🎮 Tic Tac Toe Multiplayer (React + Socket.io)
 
-🎮 Tic Tac Toe Multiplayer (React + Socket.io)
+A real-time multiplayer Tic Tac Toe game built using **React (Vite)** for the frontend and **Node.js + Socket.io** for the backend. Players can create or join rooms and play instantly with real-time synchronization.
 
-A real-time multiplayer Tic Tac Toe game built using React (Vite) for frontend and Node.js + Socket.io for backend.
-Players can create or join rooms and play instantly with real-time synchronization.
+---
 
-🚀 Features
-🎮 Real-time multiplayer gameplay
-🏠 Room creation & joining using room code
-⚡ Instant move updates using Socket.io
-🧠 Winner detection logic
-🔄 Game restart functionality
-📱 Responsive UI (works on desktop & mobile)
-🧠 Tech Stack
+## 🚀 Features
 
-#Frontend:
+* 🎮 Real-time multiplayer gameplay
+* 🏠 Room creation & joining using room code
+* ⚡ Instant move updates using Socket.io
+* 🧠 Winner detection logic
+* 🔄 Game restart functionality
+* 📱 Responsive UI (works on desktop & mobile)
 
-React (Vite)
-JavaScript
-CSS
+---
 
-#Backend:
+## 🧠 Tech Stack
 
-Node.js
-Express.js
-Socket.io
+### Frontend
 
-# 📁 Project Structure
+* React
+* Vite
+* JavaScript
+* CSS
+
+### Backend
+
+* Node.js
+* Express.js
+* Socket.io
+
+---
+
+## 📁 Project Structure
 
 ```text
 TIC-TAC-TOE-MULTIPLAYER
 │
-├── client/                        # Frontend (React + Vite)
+├── README.md
+├── .gitignore
+│
+├── client/
 │   ├── public/
 │   ├── src/
-│   │   ├── assets/                # Images & static assets
+│   │   ├── assets/
 │   │   ├── components/
-│   │   │   └── Board.jsx          # Game board UI
-│   │   ├── App.jsx                # Main app logic
+│   │   │   └── Board.jsx
+│   │   ├── App.jsx
 │   │   ├── App.css
 │   │   ├── index.css
-│   │   ├── main.jsx               # React entry point
-│   │   └── socket.js              # Socket.io client connection
+│   │   ├── main.jsx
+│   │   └── socket.js
 │   ├── index.html
 │   ├── package.json
 │   ├── vite.config.js
 │   └── .gitignore
 │
-├── server/                        # Backend (Express + Socket.io)
-│   ├── index.js                   # Server logic
-│   ├── package.json
-│   └── package-lock.json
-│
-├── README.md
-└── .gitignore
+└── server/
+    ├── index.js
+    ├── rooms.js
+    ├── package.json
+    └── package-lock.json
 ```
+
+---
 
 ## ⚙️ How to Run This Project
 
 ### 1️⃣ Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/tic-tac-toe-multiplayer.git
+git clone https://github.com/karanmaurya-git/tic-tac-toe-multiplayer.git
 cd tic-tac-toe-multiplayer
 ```
 
@@ -101,13 +111,13 @@ npm install
 
 ```bash
 cd server
-npm start
+node index.js
 ```
 
-Server runs on:
+Backend runs on:
 
 ```text
-http://localhost:3000
+http://localhost:5000
 ```
 
 ### 4️⃣ Start the Frontend
@@ -125,61 +135,40 @@ Frontend runs on:
 http://localhost:5173
 ```
 
-### 5️⃣ Play the Game
+---
 
-1. Open the app in two browser windows/devices.
-2. Create a room.
-3. Share the room code with another player.
-4. Second player joins using the room code.
-5. Start playing Tic-Tac-Toe in real time.
+## 🎮 How to Play
 
+1. Open the website.
+2. Enter your name.
+3. Create a room (Player 1).
+4. Share the room code with a friend.
+5. Friend joins using the same room code.
+6. Game starts automatically.
+7. Take turns as **X** and **O**.
+8. Winner is detected instantly.
 
-⚙️ How to Run This Project
-1️⃣ Clone the repository
-git clone https://github.com/your-username/tic-tac-toe-multiplayer.git
-2️⃣ Setup Frontend
-cd client
-npm install
-npm run dev
+---
 
-Frontend runs on:
+## 🔌 Socket Flow
 
-http://localhost:5173
-3️⃣ Setup Backend
-cd server
-npm install
-node index.js
+* Player joins room
+* Server assigns room
+* Moves are emitted via Socket.io
+* Both clients stay synchronized in real time
 
-Backend runs on:
+---
 
-http://localhost:5000
-🎮 How to Play
-Open the website
-Enter your name
-Create a room (Player 1)
-Share room code with friend
-Friend joins same room
-Game starts automatically
-Play turns (X and O)
-Winner is detected instantly
+## 🔮 Future Improvements
 
+* 🤖 Add AI (Play vs Computer mode)
+* 🏆 Score tracking system
+* 🎨 Better UI animations
+* 🔊 Sound effects
+* 🌍 Global matchmaking system
 
-🔌 Socket Flow
-Player joins room
-Server assigns room
-Moves are emitted via Socket.io
-Both clients stay synchronized in real time
+---
 
+## 👨‍💻 Author
 
-📌 Future Improvements
-
-🤖 Add AI (Play vs Computer mode)
-🏆 Score tracking system
-🎨 Better UI animations
-🔊 Sound effects
-🌍 Global matchmaking system
-
-
-👨‍💻 Author
-
-Karan Maurya
+**Karan Maurya**
